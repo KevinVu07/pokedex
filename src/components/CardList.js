@@ -1,11 +1,11 @@
 import React from "react";
 import Card from "./Card.js";
 
-const CardList = ({ robots }) => {
-  const cardArrays = robots.map((user, i) => {
-    return <Card key={i} id={robots[i].id} name={robots[i].name} email={robots[i].email} />;
+function CardList(props) {
+  const cardArrays = props.robots.map((user, i) => {
+    return <Card key={i} id={props.robots[i].id} name={props.robots[i].name} email={props.robots[i].email} />;
   });
   return <div>{cardArrays}</div>;
-};
+}
 
 export default CardList;
