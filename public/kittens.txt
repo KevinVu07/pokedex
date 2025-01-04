@@ -1,0 +1,3 @@
+# https://www.kittenstxt.org/kittenstxt.html
+User-agent: *
+Disallow:
