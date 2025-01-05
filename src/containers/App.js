@@ -9,7 +9,7 @@ import PokemonDetail from "../components/PokemonDetail";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="bg-light">
         <Heading />
         <Routes>
           <Route path="/" element={<Home />} />

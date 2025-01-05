@@ -28,17 +28,17 @@ function PokemonCard(props) {
 
   useEffect(() => {
     async function getPokemonData() {
-      const response = await fetch(`${POKEMON_API}pokemon/${props.id}`);
+      const response = await fetch(`${POKEMON_API}pokemon/${props.name}`);
       const data = await response.json();
       setPokemonImg(data?.sprites?.other?.["official-artwork"]?.front_default);
       setPokemonTypes(data.types.map((typeInfo) => typeInfo.type.name));
     }
 
     getPokemonData();
-  }, [props.id]); // Dependency array ensures the effect runs when `props.id` changes
+  }, [props.name]); // Dependency array ensures the effect runs when `props.name` changes
 
   return (
-    <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">
+    <div className="tc bg-light dib br3 pa3 ma2 grow bw2 shadow-5">
       {pokemonImg ? <img className="pokemonImg" src={pokemonImg} alt="pokemon" /> : <p>Loading...</p>}
       <div>
         <h2>{props.name}</h2>

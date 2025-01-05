@@ -3,10 +3,10 @@ import PokemonCard from "./PokemonCard.js";
 import { Link } from "react-router-dom";
 
 function PokemonList(props) {
-  const pokemonArrays = props.pokemons.map((pokemon, i) => {
+  const pokemonArrays = props.pokemons.map((pokemon) => {
     return (
       <Link key={pokemon.name} to={`/${pokemon.name}`}>
-        <PokemonCard id={i + 1} name={pokemon.name} />
+        <PokemonCard name={pokemon.name} />
       </Link>
     );
   });

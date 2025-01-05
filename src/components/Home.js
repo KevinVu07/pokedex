@@ -29,6 +29,7 @@ function Home() {
   }
 
   const filteredPokemons = pokemonList.filter((pokemon) => {
+    console.log(pokemonList);
     return pokemon.name.toLowerCase().includes(searchfield.toLowerCase());
   });
 

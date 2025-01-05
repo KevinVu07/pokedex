@@ -13,11 +13,17 @@ code {
     monospace;
 }
 
+.headingContainer {
+  height: 150px;
+  text-align: center;
+}
+
 .pokemonHeading {
   font-family: 'Pokemon Solid', sans-serif;
   font-size: 100px;
   font-weight: lighter;
   color: #FFCC01;
+  padding: 20px 5px;
 }
 
 .pokemonImg {
