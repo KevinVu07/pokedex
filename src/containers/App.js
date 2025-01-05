@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import { Link } from "react-router-dom";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from "../components/Home";
@@ -10,7 +12,9 @@ function App() {
   return (
     <Router>
       <div className="bg-light">
-        <Heading />
+        <Link to="/">
+          <Heading />
+        </Link>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:name" element={<PokemonDetail />} />

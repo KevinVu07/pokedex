@@ -26,7 +26,64 @@ code {
   padding: 20px 5px;
 }
 
+.pokemonNameDetail {
+  font-family: 'Pokemon Hollow', sans-serif;
+  font-size: 100;
+  font-weight: bold;
+  padding: 20px 5px;
+}
+
 .pokemonImg {
 height: 200px;
 width: 200px;
 }
+
+/* Pokemon details css */
+
+.pokemon-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.pokemon-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pokemon-body {
+  display: flex;
+  gap: 20px;
+}
+
+.pokemon-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.pokemon-info {
+  flex: 2;
+}
+
+.pokemon-types span {
+  display: inline-block;
+  margin: 5px 0;
+}
+
+.pokemon-stats ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pokemon-stats li {
+  margin: 5px 0;
+}
+

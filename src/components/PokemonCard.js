@@ -41,7 +41,7 @@ function PokemonCard(props) {
     <div className="tc bg-light dib br3 pa3 ma2 grow bw2 shadow-5">
       {pokemonImg ? <img className="pokemonImg" src={pokemonImg} alt="pokemon" /> : <p>Loading...</p>}
       <div>
-        <h2>{props.name}</h2>
+        <h2>{props.name[0].toUpperCase() + props.name.slice(1)}</h2>
         <div>
           {pokemonTypes.map((type) => (
             <span
