@@ -10,3 +10,8 @@
         font-weight: 200;
         color: #0ccac4;
     }
+
+.pokemonImg {
+    height: 200px;
+    width: 200px;
+}
