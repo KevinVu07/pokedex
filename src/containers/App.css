@@ -5,13 +5,9 @@
     src: local('SEGA LOGO FONT'), url('SEGA.woff') format('woff');
     }
 
-    h1 {
-        font-family: 'SEGA LOGO FONT';
-        font-weight: 200;
-        color: #0ccac4;
-    }
+    /* body {
+        background-color: #FFCC01;
+    } */
 
-.pokemonImg {
-    height: 200px;
-    width: 200px;
-}
+
+
