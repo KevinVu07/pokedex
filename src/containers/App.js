@@ -10,13 +10,13 @@ import PokemonDetail from "../components/PokemonDetail";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/pokedex">
       <div className="bg-light">
         <Link to="/">
           <Heading />
         </Link>
         <Routes>
-          <Route path="/pokedex" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/:name" element={<PokemonDetail />} />
         </Routes>
       </div>
