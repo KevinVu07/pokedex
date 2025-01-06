@@ -7,16 +7,19 @@ import ErrorBoundary from "../components/ErrorBoundary";
 function Home() {
   const [pokemonList, setPokemonList] = useState([]);
   const [searchfield, setSearchfield] = useState("");
-  const POKEMON_API = "https://pokeapi.co/api/v2/";
+  const POKEMON_API = process.env.REACT_APP_POKEMON_API || "https://pokeapi.co/api/v2/";
 
   useEffect(() => {
     async function fetchData() {
-      const pokemons = await getPokemonList(); // Wait for the data
-      console.log(pokemons);
-      setPokemonList(pokemons); // Set pokemons to the fetched array
+      try {
+        const pokemons = await getPokemonList();
+        setPokemonList(pokemons);
+      } catch (error) {
+        console.error("Error fetching Pokémon data:", error);
+      }
     }
     fetchData();
-  }, []); // Empty dependency array to prevent infinite loop
+  }, []);
 
   function onSearchChange(event) {
     setSearchfield(event.target.value);
@@ -29,7 +32,6 @@ function Home() {
   }
 
   const filteredPokemons = pokemonList.filter((pokemon) => {
-    console.log(pokemonList);
     return pokemon.name.toLowerCase().includes(searchfield.toLowerCase());
   });
 
@@ -39,9 +41,7 @@ function Home() {
     <div className="tc">
       <SearchBox searchChange={onSearchChange} />
       <Scroll>
-        <ErrorBoundary>
-          <PokemonList pokemons={filteredPokemons} />
-        </ErrorBoundary>
+        <ErrorBoundary>{filteredPokemons.length ? <PokemonList pokemons={filteredPokemons} /> : <h2>No Pokémon match your search!</h2>}</ErrorBoundary>
       </Scroll>
     </div>
   );
