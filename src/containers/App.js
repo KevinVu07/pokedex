@@ -16,7 +16,7 @@ function App() {
           <Heading />
         </Link>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/pokedex" element={<Home />} />
           <Route path="/:name" element={<PokemonDetail />} />
         </Routes>
       </div>
