@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PokemonCard from "./PokemonCard";
+import EvolutionChain from "./EvolutionChain";
 
 function PokemonDetail() {
   const { name } = useParams(); // Extract the Pokémon name from the URL
@@ -64,13 +65,12 @@ function PokemonDetail() {
               <strong>Height:</strong> {height * 10} cm
             </p>
             <p>
-              <strong>Weight:</strong> {weight} lbs
+              <strong>Weight:</strong> {Math.round(weight / 2.205)} kgs
             </p>
             <p>
               <strong>Abilities:</strong> {abilities.map((a) => a.ability.name).join(", ")}
             </p>
           </div>
-          <div className="pokemon-types mb-3"></div>
           <div className="pokemon-stats">
             <h3>Stats</h3>
             <ul>
@@ -83,6 +83,8 @@ function PokemonDetail() {
           </div>
         </div>
       </div>
+      {/* Evolution Chain Component */}
+      <EvolutionChain speciesUrl={pokemonData.species.url} />
     </div>
   );
 }

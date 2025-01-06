@@ -12,7 +12,7 @@ function App() {
   return (
     <Router basename="/pokedex">
       <div className="bg-light">
-        <Link to={`${process.env.PUBLIC_URL}/`} style={{ textDecoration: "none" }}>
+        <Link className="link" to={`${process.env.PUBLIC_URL}/`}>
           <Heading />
         </Link>
         <Routes>
