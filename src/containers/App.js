@@ -12,7 +12,7 @@ function App() {
   return (
     <Router basename="/pokedex">
       <div className="bg-light">
-        <Link to="/">
+        <Link to="/pokedex">
           <Heading />
         </Link>
         <Routes>
