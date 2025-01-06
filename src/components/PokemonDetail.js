@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import PokemonCard from "./PokemonCard";
 
-function PokemonDetail({ id }) {
+function PokemonDetail() {
   const { name } = useParams(); // Extract the Pokémon name from the URL
   const POKEMON_API = "https://pokeapi.co/api/v2/";
   const [pokemonData, setPokemonData] = useState(null);
@@ -42,7 +43,8 @@ function PokemonDetail({ id }) {
       </div>
       <div className="row">
         <div className="col-md-6 text-center">
-          <img src={officialArtwork} alt={name} className="img-fluid" />
+          <PokemonCard name={name} />
+          {/* <img src={officialArtwork} alt={name} className="img-fluid" /> */}
         </div>
         <div className="col-md-6 text-center">
           <div className="pokemon-info mb-3">
