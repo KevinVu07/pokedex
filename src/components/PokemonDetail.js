@@ -6,33 +6,45 @@ function PokemonDetail() {
   const { name } = useParams(); // Extract the Pokémon name from the URL
   const POKEMON_API = "https://pokeapi.co/api/v2/";
   const [pokemonData, setPokemonData] = useState(null);
+  const [pokemonFlavorText, setPokemonFlavorText] = useState(null);
 
+  // fetch pokemon data
   useEffect(() => {
     async function fetchPokemonData() {
       const response = await fetch(`${POKEMON_API}pokemon/${name}`);
       const data = await response.json();
       setPokemonData(data);
     }
-
     fetchPokemonData();
   }, [name]);
+
+  useEffect(() => {
+    if (pokemonData?.species?.url) {
+      async function fetchPokemonFlavorText() {
+        const speciesUrl = pokemonData.species.url;
+        const response = await fetch(speciesUrl);
+        const data = await response.json();
+        const flavorTextEntries = data.flavor_text_entries;
+
+        // Find the first flavor text entry in English
+        const flavorTextChosenObj = flavorTextEntries.find((entry) => entry.language.name === "en");
+
+        if (flavorTextChosenObj) {
+          const flavorText = flavorTextChosenObj.flavor_text;
+          setPokemonFlavorText(flavorText);
+        } else {
+          console.log("No English flavor text found.");
+        }
+      }
+      fetchPokemonFlavorText();
+    }
+  }, [pokemonData?.species?.url]);
 
   if (!pokemonData) {
     return <p>Loading...</p>;
   }
 
-  const typeColors = {
-    Grass: "green",
-    Poison: "purple",
-    Fire: "orange",
-    Water: "blue",
-    Ground: "brown",
-    Rock: "gray",
-    // Add other types as needed
-  };
-
-  const { sprites, types, height, weight, abilities, stats } = pokemonData;
-  const officialArtwork = sprites?.other?.["official-artwork"]?.front_default;
+  const { height, weight, abilities, stats } = pokemonData;
 
   return (
     <div className="container mt-5">
@@ -44,12 +56,12 @@ function PokemonDetail() {
       <div className="row">
         <div className="col-md-6 text-center">
           <PokemonCard name={name} />
-          {/* <img src={officialArtwork} alt={name} className="img-fluid" /> */}
         </div>
-        <div className="col-md-6 text-center">
+        <div className="col-md-6">
           <div className="pokemon-info mb-3">
+            <p className="fw-bold .text-wrap">{pokemonFlavorText}</p>
             <p>
-              <strong>Height:</strong> {height}
+              <strong>Height:</strong> {height * 10} cm
             </p>
             <p>
               <strong>Weight:</strong> {weight} lbs
@@ -58,23 +70,7 @@ function PokemonDetail() {
               <strong>Abilities:</strong> {abilities.map((a) => a.ability.name).join(", ")}
             </p>
           </div>
-          <div className="pokemon-types mb-3">
-            <h3>Type</h3>
-            {types.map((typeInfo) => (
-              <span
-                key={typeInfo.type.name}
-                style={{
-                  backgroundColor: typeColors[typeInfo.type.name],
-                  color: "white",
-                  padding: "5px 10px",
-                  borderRadius: "5px",
-                  margin: "0 5px",
-                }}
-              >
-                {typeInfo.type.name}
-              </span>
-            ))}
-          </div>
+          <div className="pokemon-types mb-3"></div>
           <div className="pokemon-stats">
             <h3>Stats</h3>
             <ul>
