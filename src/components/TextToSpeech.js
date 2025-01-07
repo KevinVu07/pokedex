@@ -5,18 +5,18 @@ function TextToSpeech({ text, children }) {
     if (text) {
       const voices = window.speechSynthesis.getVoices();
 
-      // Select a female voice, preferably in English
-      const femaleVoice = voices.find((voice) => voice.name.toLowerCase().includes("female") && voice.lang.startsWith("en")) || voices[0]; // Fallback to the first available voice
+      // Select a voice in English
+      const chosenVoice = voices.find((voice) => voice.lang.startsWith("en"));
 
       // Spell out the text letter by letter
       const spellText = text.split("").join(", ");
       const spellUtterance = new SpeechSynthesisUtterance(spellText);
-      spellUtterance.voice = femaleVoice;
+      spellUtterance.voice = chosenVoice;
       spellUtterance.rate = 0.8; // Slower rate for spelling
 
       // Pronounce the whole text after spelling
       const pronounceUtterance = new SpeechSynthesisUtterance(text);
-      pronounceUtterance.voice = femaleVoice;
+      pronounceUtterance.voice = chosenVoice;
 
       // Create a sequence of utterances
       spellUtterance.onend = () => {
