@@ -3,6 +3,7 @@ import PokemonList from "../components/PokemonList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import ErrorBoundary from "../components/ErrorBoundary";
+import TextToSpeech from "./TextToSpeech";
 
 function Home() {
   const [pokemonList, setPokemonList] = useState([]);

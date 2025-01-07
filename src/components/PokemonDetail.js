@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PokemonCard from "./PokemonCard";
 import EvolutionChain from "./EvolutionChain";
+import TextToSpeech from "./TextToSpeech";
 
 function PokemonDetail() {
   const { name } = useParams(); // Extract the Pokémon name from the URL
@@ -51,6 +52,11 @@ function PokemonDetail() {
     <div className="container mt-5">
       <div className="pokemon-header text-center mb-4">
         <h1 className="pokemonNameDetail">
+          <TextToSpeech text={name}>
+            <button type="button" className="btn btn-light">
+              🔊
+            </button>
+          </TextToSpeech>
           {name[0].toUpperCase() + name.slice(1)} #{pokemonData.id}
         </h1>
       </div>
