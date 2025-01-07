@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function TextToSpeech({ text, children }) {
-  const handleClick = () => {
-    if (text) {
-      const voices = window.speechSynthesis.getVoices();
+  const [voices, setVoices] = useState([]);
 
+  useEffect(() => {
+    // Load voices once the voices are available
+    const handleVoicesChanged = () => {
+      const availableVoices = window.speechSynthesis.getVoices();
+      setVoices(availableVoices);
+    };
+
+    // Add event listener when the voices change
+    window.speechSynthesis.onvoiceschanged = handleVoicesChanged;
+
+    // Get voices immediately if they are already loaded
+    const initialVoices = window.speechSynthesis.getVoices();
+    if (initialVoices.length > 0) {
+      setVoices(initialVoices);
+    }
+
+    // Cleanup on component unmount
+    return () => {
+      window.speechSynthesis.onvoiceschanged = null;
+    };
+  }, []);
+
+  const handleClick = () => {
+    if (text && voices.length > 0) {
       // Select a voice in English
       const chosenVoice = voices.find((voice) => voice.lang.startsWith("en"));
 
