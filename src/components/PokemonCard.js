@@ -34,14 +34,17 @@ function PokemonCard(props) {
       setPokemonTypes(data.types.map((typeInfo) => typeInfo.type.name));
     }
 
-    getPokemonData();
+    if (props.name) {
+      getPokemonData();
+    }
   }, [props.name]); // Dependency array ensures the effect runs when `props.name` changes
 
   return (
     <div className="tc bg-light dib br3 pa3 ma2 grow bw2 shadow-5">
       {pokemonImg ? <img className="pokemonImg" src={pokemonImg} alt="pokemon" /> : <p>Loading...</p>}
       <div>
-        <h2>{props.name[0].toUpperCase() + props.name.slice(1)}</h2>
+        {/* Check if name exists before rendering */}
+        <h2>{props.name ? props.name[0].toUpperCase() + props.name.slice(1) : "Unknown Pokémon"}</h2>
         <div>
           {pokemonTypes.map((type) => (
             <span
